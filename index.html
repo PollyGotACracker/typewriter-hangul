@@ -10,6 +10,9 @@
       width: 100%;
       height: 100px;
     }
+    section#typewriter {
+      padding: 10px 0;
+    }
     span.fixed {
       word-break: break-all;
       white-space: pre-wrap;
@@ -189,7 +192,7 @@
         const codeSecond =
           UNICODE_HANGUL_FIRST + cho * CHO_STRIDE + jung * JUNG_STRIDE;
         const textSecond = String.fromCharCode(codeSecond);
-        // 초성 + 종성
+        // 초성 + 중성 + 종성
         const codeThird = codeSecond + jong;
         const textThird = String.fromCharCode(codeThird);
 
@@ -277,8 +280,8 @@
 
     const storage = {
       key: "typewriter",
-      default: `타자기 효과를 만들어요. 한글 초성, 중성, 종성을 쪼개봐요.
-이모지도 지원해요.🦜 이모지는 일반 문자와 다르니까 조심해요.`,
+      default: `유니코드를 사용해서 한글 초성, 중성, 종성을 쪼개봐요.
+이모지도 지원해요.🦜`,
       get() {
         return localStorage.getItem(this.key);
       },
@@ -295,6 +298,7 @@
     const btnReset = document.querySelector("button.reset");
 
     window.addEventListener("DOMContentLoaded", () => {
+      textareaText.focus();
       let text = "";
       const saved = storage.get();
       if (saved) {
@@ -320,6 +324,7 @@
       }
     });
     btnReset.addEventListener("click", () => {
+      textareaText.focus();
       stopTyping();
       elCurrent.textContent = "";
       elFixed.textContent = "";
