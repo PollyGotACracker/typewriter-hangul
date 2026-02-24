@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -297,7 +297,7 @@
     const btnStart = document.querySelector("button.start");
     const btnReset = document.querySelector("button.reset");
 
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("DOMContentLoaded", async () => {
       textareaText.focus();
       let text = "";
       const saved = storage.get();
@@ -308,10 +308,10 @@
       }
       textareaText.textContent = text;
       const charSteps = genCharSteps(text);
-      typeLetters(charSteps);
+      await typeLetters(charSteps);
     });
 
-    btnStart.addEventListener("click", () => {
+    btnStart.addEventListener("click", async () => {
       stopTyping();
       elCurrent.textContent = "";
       elFixed.textContent = "";
@@ -320,7 +320,7 @@
       storage.set(text);
       if (text) {
         const charSteps = genCharSteps(text);
-        typeLetters(charSteps);
+        await typeLetters(charSteps);
       }
     });
     btnReset.addEventListener("click", () => {
