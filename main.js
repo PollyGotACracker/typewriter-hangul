@@ -20,7 +20,6 @@ const { startTyping, stopTyping } = createTyper({
 });
 
 window.addEventListener("DOMContentLoaded", async () => {
-  putter.focus();
   let text = "";
   const saved = storage.get();
   if (saved) {
@@ -29,6 +28,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     text = storage.getDefault();
   }
   putter.set(text);
+  putter.focus();
   await startTyping(text);
 });
 
@@ -45,7 +45,6 @@ btnStart.addEventListener("click", async () => {
 });
 
 btnReset.addEventListener("click", () => {
-  putter.focus();
   stopTyping();
   fixed.clear();
   current.clear();
@@ -54,4 +53,5 @@ btnReset.addEventListener("click", () => {
   // putter.clear();
   const text = storage.getDefault();
   putter.set(text);
+  putter.focus();
 });

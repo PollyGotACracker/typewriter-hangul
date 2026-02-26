@@ -53,6 +53,8 @@ export function setupCursor(elCursor, color) {
 export function setupPutter(elPutter) {
   return {
     focus() {
+      const len = elPutter.value.length;
+      elPutter.setSelectionRange(len, len);
       elPutter.focus();
     },
     get() {
